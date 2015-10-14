@@ -1,0 +1,33 @@
+{
+  "name": "localez",
+  "version": "0.0.1",
+  "description": "Localize from single string for genders, numbers, and number to text.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/labithiotis/localez.git"
+  },
+  "keywords": [
+    "locale",
+    "localization",
+    "i18n",
+    "localizer",
+    "localez"
+  ],
+  "author": "Darren Labithiotis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/labithiotis/localez/issues"
+  },
+  "homepage": "https://github.com/labithiotis/localez#readme",
+  "devDependencies": {
+    "gulp": "3.x.x",
+    "gulp-babel": "^5.2.1",
+    "gulp-notify": "2.x.x",
+    "gulp-plumber": "1.x.x",
+    "gulp-uglify": "1.x.x"
+  }
+}
