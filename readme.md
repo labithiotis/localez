@@ -1,25 +1,22 @@
 # Localez
 
-Tiny template focused library to handle localized strings:
+Localization is a pain, speically when dealing with gender specific translations, other libraries have tackled this with complexe json/xml structures. This library works similar to templating libraries, allowing transaltion to be self contianed and inline with text.
 
 ```javascript
 
 /** fr.js (loaded locale) **/
 locale = {
-	'-4213': 'Bonjour'
+  '-4213': 'Bonjour'
 }
 
 /** From code **/
 __('Hello')
-
-// Returns  >
-"Bonjour"
+// Bonjour
 
 /** You can pass gender alternatives and pluralizers **/
 __('If {{g donator male(he) female(she) }} only had given {{g receiver male(him) female(her) }} {{i data.flowers zero( flowers) one( flower) other( flowers)}} then they\'d lived happily ever after.', {donator: 'male', receiver: 'female', data : { flowers: 1 }})
+// If he only had given her 1 flower then they'd lived happily ever after.
 
-// Returns  >
-"If he only had given her 1 flower then they'd lived happily ever after."
 ```
 
 `Todo`
