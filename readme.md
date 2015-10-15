@@ -1,6 +1,6 @@
 # Localez
 
-Localization is a pain, speically when dealing with gender specific translations, other libraries have tackled this with complexe json/xml structures. This library works similar to templating libraries, allowing transaltion to be self contianed and inline with text.
+Localization is a pain, specially when dealing with gender specific translations, other libraries have tackled this with complexe json/xml structures. This library works similar to templating libraries, allowing transaltion to be self contianed and inline with text.
 
 ```javascript
 
