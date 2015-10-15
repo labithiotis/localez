@@ -23,6 +23,7 @@ __('If {{g donator male(he) female(she) }} only had given {{g receiver male(him)
 ```
 
 `Todo`
+
 1. Add tests
 2. Check NPM/Node usage works
 3. Choose locale to use for string `__(STRING, [DATA, LOCALE])`
@@ -41,7 +42,7 @@ The library works by first retrieving exact match of string from the stored loca
 ##### Types
 
 | Type Long | Type Shorthand | Type Options |
-|--|---|--|
+|-----|------|-----|
 | gender | g | Can be what ever you want, it just needs to match up to variable passed in: `male` or `female`|
 | integer | i | `zero`, `one`, `few`, `many`, `other` |
 | number | n | `zero`, `one`, `few`, `many`, `other` |
@@ -80,7 +81,7 @@ config: {
 ```
 
 |Option|Default||
-|--|--|--|
+|-----|-----|-----|
 |debug||If debug is enabled or not, default is false|
 |debugConsoleStyle||
 |&nbsp;&nbsp;&nbsp;&nbsp;`warn`|background: #990f0f; color: #ffc7c7||
