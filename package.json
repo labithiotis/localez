@@ -1,6 +1,6 @@
 {
   "name": "localez",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Localize from single string for genders, numbers, and number to text.",
   "main": "index.js",
   "scripts": {
@@ -24,10 +24,13 @@
   },
   "homepage": "https://github.com/labithiotis/localez#readme",
   "devDependencies": {
+    "connect": "^3.4.0",
     "gulp": "3.x.x",
     "gulp-babel": "^5.2.1",
+    "gulp-connect": "^2.2.0",
     "gulp-notify": "2.x.x",
     "gulp-plumber": "1.x.x",
-    "gulp-uglify": "1.x.x"
+    "gulp-uglify": "1.x.x",
+    "mocha": "^2.3.3"
   }
 }

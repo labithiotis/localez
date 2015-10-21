@@ -2,8 +2,9 @@
 
   'use strict';
 
-  var locale,
-  _globals = (function() { return this || (0, eval)('this'); }());
+  var locales,
+      invoker = '__',
+      _globals = (function() { return this || (0, eval)('this'); }());
 
   String.prototype.hashCode = function() {
     var hash = 0, i, chr, len;
@@ -25,21 +26,6 @@
     return _this;
   };
 
-  function loadScript(src, cb) {
-    var head = document.getElementsByTagName('head')[0],
-        script = document.createElement('script');
-    script.type = 'text/javascript';
-
-    //script.onreadystatechange= function () {
-    // if (this.readyState === 'complete' && typeof cb === 'function') cb();
-    //}
-
-    script.onload = cb;
-    script.src = src;
-    head.appendChild(script);
-
-  }
-
   function extend(a, b) {
     var key;
     for (key in b) {
@@ -51,19 +37,59 @@
     return a;
   }
 
-  function Locale(options) {
+  function Locales(options) {
+
+    if (typeof options === 'string') return;
+
+    options = options || {};
+
+    this.lang = options.langDefault || 'en';
+    this.langDir = options.langDir || './locales/';
+    this.langExt = options.langExt || '.json';
+
+    this.locales = {};
+
+    // Init with en locale
+    this.locales[this.lang] = new Locale({config: options});
+
+    if (!(typeof module !== 'undefined' && module.exports)) {
+      try {
+        this.lang = navigator.language.match(/^([^-]*)/)[0];
+      } catch (y) {
+        console.warn('Unable to determine device language.');
+      }
+    }
+
+    return this;
+
+  }
+
+  Locales.prototype.parse = function(string, data, lang) {
+    return this.locales[lang || this.lang].parse.apply(this.locales[lang || this.lang], arguments);
+  };
+
+  Locales.prototype.load = function(lang) {
+    console.log('Load locale %s from %s', lang, this.langDir + this.lang + this.langExt);
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4) {
+        this.locales[lang] = new Locale(JSON.parse(xhr.responseText));
+      }
+    }.bind(this);
+    xhr.open('GET', this.langDir + this.lang + this.langExt, true);
+    xhr.send(null);
+  };
+
+  function Locale(locale) {
+
+    this.locale = locale;
 
     this.options = extend({
-      version: '0.0.1',
-      lang: null,
       debug: false,
       debugConsoleStyle: {
         warn: 'background: #222; color: #bada55',
         error: 'background: #990f0f; color: #ffc7c7',
       },
-      hasLocale: false,
-      dir: 'locales/',
-      invoker: '__',
       openTag: '{{',
       closeTag: '}}',
       matchers: {
@@ -133,27 +159,11 @@
         return (n < 0 ? 'minus ' : '') + iter('')(0)(grp(String(n)))(rem(String(n)));
       },
 
-    }, options);
-
-    this.locale = null;
-
-    try {
-      this.options.lang = navigator.language.match(/^([^-]*)/)[0];
-    } catch (y) {
-      console.warn('Unable to determine device language.');
-    }
-
-    this.loadLocale(this.options.dir + this.options.lang + '.js', this.localeLoaded.bind(this));
+    }, locale ? locale.config : {});
 
     return this;
 
   }
-
-  Locale.prototype.__ = function(string, data) {
-    if (typeof string !== 'string') return this;
-    if (data && typeof data !== 'object') return console.error('Second argmument should to be a {object}');
-    return this.parse.apply(this, [string, data || {}]);
-  };
 
   Locale.prototype.log = function() {
     return this.options.debug && console.log.apply(console, arguments);
@@ -164,21 +174,18 @@
     return '';
   };
 
-  Locale.prototype.localeLoaded = function() {
-    this.locale = window.locale;
-    extend(this.options, window.locale.config || {});
+  // Parse the string for expressions
+  Locale.prototype.parse = function(string, data) {
+    // small function to create a temp variable for result
+    if (typeof string !== 'string') return this;
+    if (data && typeof data !== 'object') return console.error('Second argmument should to be a {object}');
+    return this.parseString(this.getLocaleString(string), null, data);
   };
 
   // Returns the translation string from locale
   Locale.prototype.getLocaleString = function(key) {
     this.log('Get transaltion string from locale resource');
     return this.locale ? this.locale[String(key).hashCode()] || key : key;
-  };
-
-  // Parse the string for expressions
-  Locale.prototype.parse = function(string, data) {
-    // small function to create a temp variable for result
-    return this.parseString(this.getLocaleString(string), null, data);
   };
 
   // Starts the parsing of the string
@@ -398,30 +405,42 @@
   /** EXPORTS **/
 
   if (typeof module !== 'undefined' && module.exports) {
+
     // NPM
-    Locale.prototype.loadLocale = function(src) {
-      return require(src);
+    Locales.prototype.load = function(lang, src) {
+      this.locales[lang] = new Locale(require(src));
     };
 
-    locale = new Locale();
-    module.exports = locale[locale.options.invoker].bind(locale);
+    return module.exports = Locales
 
   } else if (typeof define === 'function' && define.amd) {
+
     // AMD
-    Locale.prototype.loadLocale = loadScript;
-    locale = new Locale();
-    define(function() { return locale[locale.options.invoker].bind(locale); });
+    define(function() {
+
+      locales = new Locales();
+      locales.load(locales.lang);
+      _globals[invoker] = function() {
+        return locales.locales[locales.lang].parse.apply(locales[locales.lang], arguments);
+      };
+
+      return locales;
+
+    });
 
   } else {
 
     // GLOBAL
     try {
+      locales = new Locales();
+      locales.load(locales.lang);
+      _globals[invoker] = function() {
+        return locales.locales[locales.lang].parse.apply(locales.locales[locales.lang], arguments);
+      };
 
-      Locale.prototype.loadLocale = loadScript;
-      locale = new Locale();
-      _globals[locale.options.invoker] = locale[locale.options.invoker].bind(locale);
-
-    } catch (e) {}
+    } catch (e) {
+      console.error(e);
+    }
 
   }
 

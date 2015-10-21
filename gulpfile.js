@@ -2,6 +2,7 @@ var gulp = require('gulp'),
 	babel = require('gulp-babel'),
 	uglify = require('gulp-uglify'),
 	notify = require('gulp-notify'),
+  connect = require('gulp-connect'),
 	plumber = require('gulp-plumber');
 
 gulp.task('build', function() {
@@ -19,8 +20,11 @@ gulp.task('build', function() {
 			},
 		}))
 		.pipe(babel())
-		.pipe(uglify())
+
+		//.pipe(uglify())
 		.pipe(gulp.dest('./dist'))
+		.pipe(gulp.dest('./test/browser'))
+    .pipe(connect.reload())
 		.pipe(notify({
 			title: ('Babel Compile'),
 			message: 'Successfully compiled 😃',
@@ -29,6 +33,16 @@ gulp.task('build', function() {
 		}))
 })
 
+gulp.task('connect', function() {
+  connect.server({
+		root: './test/browser',
+    port: '8888',
+    livereload: true,
+  })
+})
+
 gulp.task('watch', function() {
 	gulp.watch(['./src/**/*'], ['build'])
 })
+
+gulp.task('default', ['build','connect','watch'])

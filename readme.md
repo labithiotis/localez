@@ -18,7 +18,7 @@ locale = {
 }
 
 /** From code **/
-__('Hello')
+__('Morning')
 // Bonjour
 
 /** You can pass gender alternatives and pluralizers **/
