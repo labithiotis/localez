@@ -1,4 +1,4 @@
-var __ = require('./../../index.js')({debug:false}),
+var __ = require('./../../index.js'),
 		assert 	= require('assert');
 
 describe('Number Tests', function() {
@@ -11,7 +11,7 @@ describe('Number Tests', function() {
 
 			assert.equal(string, 'ten bottles')
 
-			done();
+			done()
 
 		})
 
@@ -21,7 +21,7 @@ describe('Number Tests', function() {
 
 			assert.equal(string, 'ten bottles')
 
-			done();
+			done()
 
 		})
 
@@ -35,7 +35,7 @@ describe('Number Tests', function() {
 
 			assert.equal(string, 'zero zero')
 
-			done();
+			done()
 
 		})
 
@@ -45,7 +45,7 @@ describe('Number Tests', function() {
 
 			assert.equal(string, 'one one')
 
-			done();
+			done()
 
 		})
 
@@ -55,7 +55,7 @@ describe('Number Tests', function() {
 
 			assert.equal(string, 'two two')
 
-			done();
+			done()
 
 		})
 
@@ -65,7 +65,7 @@ describe('Number Tests', function() {
 
 			assert.equal(string, 'three few')
 
-			done();
+			done()
 
 		})
 
@@ -75,7 +75,7 @@ describe('Number Tests', function() {
 
 			assert.equal(string, 'ten many')
 
-			done();
+			done()
 
 		})
 
@@ -85,7 +85,49 @@ describe('Number Tests', function() {
 
 			assert.equal(string, 'ninety-nine other')
 
-			done();
+			done()
+
+		})
+
+	})
+
+	describe('Value Tests', function() {
+
+		//for(var i = 4; i < 200; i++){ n.push(__('{{n n other(*)}}', {n: i}).replace(' *', '')) }
+
+		var numbers = ['four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen','twenty','twenty-one','twenty-two','twenty-three','twenty-four','twenty-five','twenty-six','twenty-seven','twenty-eight','twenty-nine','thirty','thirty-one','thirty-two','thirty-three','thirty-four','thirty-five','thirty-six','thirty-seven','thirty-eight','thirty-nine','fourty','fourty-one','fourty-two','fourty-three','fourty-four','fourty-five','fourty-six','fourty-seven','fourty-eight','fourty-nine','fifty','fifty-one','fifty-two','fifty-three','fifty-four','fifty-five','fifty-six','fifty-seven','fifty-eight','fifty-nine','sixty','sixty-one','sixty-two','sixty-three','sixty-four','sixty-five','sixty-six','sixty-seven','sixty-eight','sixty-nine','seventy','seventy-one','seventy-two','seventy-three','seventy-four','seventy-five','seventy-six','seventy-seven','seventy-eight','seventy-nine','eighty','eighty-one','eighty-two','eighty-three','eighty-four','eighty-five','eighty-six','eighty-seven','eighty-eight','eighty-nine','ninety','ninety-one','ninety-two','ninety-three','ninety-four','ninety-five','ninety-six','ninety-seven','ninety-eight','ninety-nine','one hundred ','one hundred one','one hundred two','one hundred three','one hundred four','one hundred five','one hundred six','one hundred seven','one hundred eight','one hundred nine','one hundred ten','one hundred eleven','one hundred twelve','one hundred thirteen','one hundred fourteen','one hundred fifteen','one hundred sixteen','one hundred seventeen','one hundred eighteen','one hundred nineteen','one hundred twenty','one hundred twenty-one','one hundred twenty-two','one hundred twenty-three','one hundred twenty-four','one hundred twenty-five','one hundred twenty-six','one hundred twenty-seven','one hundred twenty-eight','one hundred twenty-nine','one hundred thirty','one hundred thirty-one','one hundred thirty-two','one hundred thirty-three','one hundred thirty-four','one hundred thirty-five','one hundred thirty-six','one hundred thirty-seven','one hundred thirty-eight','one hundred thirty-nine','one hundred fourty','one hundred fourty-one','one hundred fourty-two','one hundred fourty-three','one hundred fourty-four','one hundred fourty-five','one hundred fourty-six','one hundred fourty-seven','one hundred fourty-eight','one hundred fourty-nine','one hundred fifty','one hundred fifty-one','one hundred fifty-two','one hundred fifty-three','one hundred fifty-four','one hundred fifty-five','one hundred fifty-six','one hundred fifty-seven','one hundred fifty-eight','one hundred fifty-nine','one hundred sixty','one hundred sixty-one','one hundred sixty-two','one hundred sixty-three','one hundred sixty-four','one hundred sixty-five','one hundred sixty-six','one hundred sixty-seven','one hundred sixty-eight','one hundred sixty-nine','one hundred seventy','one hundred seventy-one','one hundred seventy-two','one hundred seventy-three','one hundred seventy-four','one hundred seventy-five','one hundred seventy-six','one hundred seventy-seven','one hundred seventy-eight','one hundred seventy-nine','one hundred eighty','one hundred eighty-one','one hundred eighty-two','one hundred eighty-three','one hundred eighty-four','one hundred eighty-five','one hundred eighty-six','one hundred eighty-seven','one hundred eighty-eight','one hundred eighty-nine','one hundred ninety','one hundred ninety-one','one hundred ninety-two','one hundred ninety-three','one hundred ninety-four','one hundred ninety-five','one hundred ninety-six','one hundred ninety-seven','one hundred ninety-eight','one hundred ninety-nine']
+
+		numbers.forEach(function(number, i) {
+
+			var n = i + 4;
+
+			it(n + ' -> ' + number, function(done) {
+
+				assert.equal(__('{{n n other(*)}}', {n: n }), number + ' *')
+
+				done()
+
+			})
+
+		})
+
+		it('3298241 -> three million two hundred ninety-eight thousand two hundred fourty-one', function(done) {
+
+				var string =  __('{{n n other(*)}}', {n: 3298241}).replace(' *', '')
+
+				assert(string, 'three million two hundred ninety-eight thousand two hundred fourty-one')
+
+				done()
+
+		})
+
+		it('928981283717481 -> nine hundred twenty-eight trillion nine hundred eighty-one billion two hundred eighty-three million seven hundred seventeen thousand four hundred eighty-one', function(done) {
+
+				var string =  __('{{n n other(*)}}', {n: 928981283717481}).replace(' *', '')
+
+				assert(string, 'nine hundred twenty-eight trillion nine hundred eighty-one billion two hundred eighty-three million seven hundred seventeen thousand four hundred eighty-one')
+
+				done()
 
 		})
 

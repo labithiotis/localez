@@ -46,11 +46,9 @@
 
   function Locales(options) {
 
-    if (typeof options === 'string') return;
+    options = typeof options === 'object' ? options : {};
 
-    options = options || {};
-
-    this.lang = options.langDefault || 'en';
+    this.lang = options.lang || 'en';
     this.langDir = options.langDir || './locales/';
     this.langExt = options.langExt || '.json';
 
@@ -70,20 +68,34 @@
     return this;
   }
 
-  Locales.prototype.parse = function (string, data, lang) {
-    return this.locales[lang || this.lang].parse.apply(this.locales[lang || this.lang], arguments);
+  Locales.prototype.set = function (options) {
+
+    if (typeof options === 'string') {
+
+      this.lang = options;
+    } else if (typeof options === 'object') {
+
+      if (typeof options.lang === 'string') this.lang = options.lang;
+      if (typeof options.langDir === 'string') this.lang = options.langDir;
+      if (typeof options.langExt === 'string') this.lang = options.langExt;
+    }
   };
 
-  Locales.prototype.load = function (lang) {
-    console.log('Load locale %s from %s', lang, this.langDir + this.lang + this.langExt);
+  Locales.prototype.load = function (lang, src) {
+    var uri = src ? src : this.langDir + this.lang + this.langExt;
+    console.log('Load locale %s from %s', lang, uri);
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = (function () {
       if (xhr.readyState == 4) {
         this.locales[lang] = new Locale(JSON.parse(xhr.responseText));
       }
     }).bind(this);
-    xhr.open('GET', this.langDir + this.lang + this.langExt, true);
+    xhr.open('GET', uri, true);
     xhr.send(null);
+  };
+
+  Locales.prototype.parse = function (string, data, lang) {
+    return this.locales[lang || this.lang].parse.apply(this.locales[lang || this.lang], arguments);
   };
 
   function Locale(locale) {
@@ -122,7 +134,7 @@
       },
 
       numberToString: function numberToString(n) {
-        if (n === 0) return 'zero';
+        if (n === 0) return 'zero ';
         var a = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
         var b = ['', '', 'twenty', 'thirty', 'fourty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
         var g = ['', 'thousand', 'million', 'billion', 'trillion', 'quadrillion', 'quintillion', 'sextillion', 'septillion', 'octillion', 'nonillion'];
@@ -400,7 +412,8 @@
 
     // NPM
     Locales.prototype.load = function (lang, src) {
-      this.locales[lang] = new Locale(require(src));
+      var locale = require(src);
+      this.locales[lang] = new Locale(locale);
     };
 
     return module.exports = Locales;

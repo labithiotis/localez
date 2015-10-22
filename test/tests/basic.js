@@ -1,4 +1,4 @@
-var __ = require('./../../index.js')({debug:false}),
+var __ = require('./../../index.js'),
 		assert 	= require('assert');
 
 describe('Basic Tests', function() {

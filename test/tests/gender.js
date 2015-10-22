@@ -1,4 +1,4 @@
-var __ = require('./../../index.js')({debug:false}),
+var __ = require('./../../index.js'),
 		assert 	= require('assert');
 
 describe('Gender Tests', function() {
@@ -11,7 +11,7 @@ describe('Gender Tests', function() {
 
 			assert.equal(string, 'I am a man!')
 
-			done();
+			done()
 
 		})
 
@@ -21,7 +21,7 @@ describe('Gender Tests', function() {
 
 			assert.equal(string, 'I am a man!')
 
-			done();
+			done()
 
 		})
 
@@ -35,7 +35,7 @@ describe('Gender Tests', function() {
 
 			assert.equal(string, 'I am a man!')
 
-			done();
+			done()
 
 		})
 
@@ -45,7 +45,7 @@ describe('Gender Tests', function() {
 
 			assert.equal(string, 'I am a women!')
 
-			done();
+			done()
 
 		})
 
@@ -55,7 +55,7 @@ describe('Gender Tests', function() {
 
 			assert.equal(string, 'I am a alien!')
 
-			done();
+			done()
 
 		})
 
@@ -65,7 +65,7 @@ describe('Gender Tests', function() {
 
 			assert.equal(string, 'I am a wtf?!')
 
-			done();
+			done()
 
 		})
 

@@ -1,4 +1,4 @@
-var __ = require('./../../index.js')({debug:false}),
+var __ = require('./../../index.js'),
 		assert 	= require('assert');
 
 describe('Integer Tests', function() {
@@ -11,7 +11,7 @@ describe('Integer Tests', function() {
 
 			assert.equal(string, '10 bottles')
 
-			done();
+			done()
 
 		})
 
@@ -21,7 +21,7 @@ describe('Integer Tests', function() {
 
 			assert.equal(string, '10 bottles')
 
-			done();
+			done()
 
 		})
 
@@ -35,7 +35,7 @@ describe('Integer Tests', function() {
 
 			assert.equal(string, '0 zero')
 
-			done();
+			done()
 
 		})
 
@@ -45,7 +45,7 @@ describe('Integer Tests', function() {
 
 			assert.equal(string, '1 one')
 
-			done();
+			done()
 
 		})
 
@@ -55,7 +55,7 @@ describe('Integer Tests', function() {
 
 			assert.equal(string, '2 two')
 
-			done();
+			done()
 
 		})
 
@@ -65,7 +65,7 @@ describe('Integer Tests', function() {
 
 			assert.equal(string, '3 few')
 
-			done();
+			done()
 
 		})
 
@@ -75,7 +75,7 @@ describe('Integer Tests', function() {
 
 			assert.equal(string, '10 many')
 
-			done();
+			done()
 
 		})
 
@@ -85,7 +85,7 @@ describe('Integer Tests', function() {
 
 			assert.equal(string, '99 other')
 
-			done();
+			done()
 
 		})
 
