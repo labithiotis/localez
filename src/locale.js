@@ -110,6 +110,7 @@
         other: 'other',
       },
       numbers: function(number, enums) {
+        if (!number || number <= 0) return enums.zero;
         var	b = number % 10;
         return (~~(number % 100 / 10) === 1) ? enums.many :
         (b === 1) ? enums.one :
@@ -118,7 +119,7 @@
       },
 
       numberToString: function(n) {
-        if (n === 0) return 'zero';
+        if (n === 0) return 'zero ';
         var a = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
         var b = ['', '', 'twenty', 'thirty', 'fourty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
         var g = ['', 'thousand', 'million', 'billion', 'trillion', 'quadrillion', 'quintillion', 'sextillion', 'septillion', 'octillion', 'nonillion'];
@@ -367,7 +368,7 @@
 				numberKey,
 				result;
 
-    if (!variable) return this.parseError('The variable: ' + variable + ' can\'t be found.');
+    if (variable === undefined) return this.parseError('The variable: ' + variable + ' can\'t be found.');
 
     number 	 	   = parseFloat(variable);
     numberKey    = this.options.numbers(number, this.options.numberEnum);
@@ -390,7 +391,7 @@
 				numberKey,
 				result;
 
-    if (!variable) return this.parseError('The variable: ' + variable + ' can\'t be found.');
+    if (variable === undefined) return this.parseError('The variable: ' + variable + ' can\'t be found.');
 
     number 	 	   = parseFloat(variable);
     numberKey    = this.options.numbers(number, this.options.numberEnum);
