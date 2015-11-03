@@ -91,7 +91,7 @@ __('Morning')
 
 /** You can pass gender alternatives and pluralizers **/
 
-__('There\'s {{i bottles other( bottles) one( bottle)}} of beer on the wall.'', {bottles: 99})
+__('There\'s {{i bottles other( bottles) one( bottle)}} of beer on the wall.', {bottles: 99})
 // vous êtes deux dames sexy.
 
 __('You are {{g target male({{n amount zero(sexy man) other(sexy men)}}) female({{n amount zero(sexy lady) other(sexy ladies)}})}}.', {amount: 2, target: 'female'})
