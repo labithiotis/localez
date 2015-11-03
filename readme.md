@@ -29,7 +29,7 @@ __('{{gender g male(He) female(She)}} has {{integer n zero(like) one(like) other
 
 #### Translations
 
-The translations are stored in a `JSON` file which is loaded in and stored by it's language, the language initial loaded is pulled out by UserAgent or if server side it can be loaded manually.
+The translations are stored in a `JSON` file which is loaded in and stored by it's language, the language that is initial loaded is pulled decided by UserAgent or if server side it can be loaded manually.
 
 ##### Example of a translation file
 ```json
@@ -38,15 +38,16 @@ The translations are stored in a `JSON` file which is loaded in and stored by it
 		"lang": "en",
 		"debug": false
 	},
-	"-1783117148": "This has been translated (Test Locale Loading) {{g gender male(male) female(female)}}"
+	"-1783117148": "This is a trsnaltion string"
 }
 ```
 
-The number stored for each translation is a unique HashCode to that string, the preference for a hashCode instead of original string is for compression and readability of contents. 
+The number stored for each translation is a unique HashCode of the requested string from the source code, reason for the library doing this, is for compression and readability of contents. 
 
-Along with the with the translation is the config for that specific lang that overrides all aspects of translation.
+Along with the with the locale translations, is the locale config which overrides all aspects of locale translation.
 
-The HashCode is generated using the function below (there's a Gulp task below too that trawls your source code and generates a translation file with this function)
+The unique HashCode is generated using the function below:
+There's a [Gulp Task (localez/gulptask.js)](https://raw.githubusercontent.com/labithiotis/localez/master/gulptask.js) that trawls your source code and generates a translation file using same function.
 
 ```javascript
 String.prototype.hashCode = function() {
@@ -124,7 +125,7 @@ Parse a string and inject appropriate variables if required.
 
 `__(STRING, [OBJECT])`
 
-The library works by first retrieving exact match of string from the stored locale (which is loaded on launch), it then parses that string for `Types` which has `Options`
+The library works by first retrieving exact match of string from the stored locale (which is loaded on launch), next it converts that string to HashCode and looks for locale version. With that it then parses that string for `Types` which has `Options`.
 
 ##### Types
 
@@ -134,7 +135,7 @@ The library works by first retrieving exact match of string from the stored loca
 | integer | i | `zero`, `one`, `few`, `many`, `other` |
 | number | n | `zero`, `one`, `few`, `many`, `other` |
 
-In any type the second argument is the variable used for options, the variable is gained from the passed in object.
+In any `type` the second argument is always the variable used for options, the variable is gained from the passed in object.
 
 Anything inside an option is also parsed for locale expressions
 
@@ -224,29 +225,29 @@ Inside the locale that's loaded you can add a config that will only effect that 
 |numbers|`FUNCTION`|function(number, gender)|A function to decide which enum the value of the variable is, used to pick the option inside an expression|
 |numberToString|`FUNCTION`|function(number, gender)|A function to convert an integer into number text (1 -> one)|
 
-# Gulp Task for Generating a Locale File
-Below is a Gulp task that will trawl the source code directory for any translation references and spit them out to `./locales/output.js`
-
-Download from: [localez/gulptask.js](https://raw.githubusercontent.com/labithiotis/localez/master/gulptask.js)
-
 # Todo
 - [x] Allow number (n/i) placement in option using %i
 - [x] Added test for combination expressions
 - [] Check AMD works
-- [] Get translation functions for numbers and numbersToString:
+- [] Get translation functions for `numbers` and `numbersToString`:
 	- [] French
 	- [] German
 	- [] Italian
 	etc..
-- [] Add tests to check for config overrides
+- [] Add tests to check for locale config overrides
 - [] Add JS Coverage test (suggestions?  coveralls.io)
-- [] Make hashCode Optional, allows string conts
+- [] Make hashCode optional, allowing string conts instead
 - [] Create a plugin to do syntax highlighting for:
 	- [] Webstorm IDE
 	- [] Atom
 
 
-# Support Me
+# Author
+#### Darren Labithiotis 
+@labithiotis
+
+
+# Support
 If you would like to aid me, please feel free to contact me or buy me a beer :)
 
 
