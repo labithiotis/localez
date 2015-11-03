@@ -4,6 +4,7 @@
 
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
+[![Build][travis-image]][travis-url]
 
 Localization is a pain, specially when dealing with gender specific translations and pluralization, other libraries have tackled this with complex `json`/`xml` structures. This library avoids that by working similar to existing templating libraries, allowing translation to be self contained and inline. Using ES6 templating string makes it even easier.
 
@@ -257,8 +258,7 @@ Still lost, let me know what additional information you need on this readme to h
 [npm-url]: https://npmjs.org/package/localez
 [downloads-image]: https://img.shields.io/npm/dm/localez.svg?style=flat
 [downloads-url]: https://npmjs.org/package/localez
-
-[travis-image]: https://img.shields.io/travis/strongloop/localez.svg?style=flat
-[travis-url]: https://travis-ci.org/strongloop/localez
-[coveralls-image]: https://img.shields.io/coveralls/strongloop/localez.svg?style=flat
-[coveralls-url]: https://coveralls.io/r/strongloop/localez?branch=master
+[travis-image]: https://img.shields.io/travis/labithiotis/localez.svg?style=flat
+[travis-url]: https://travis-ci.org/labithiotis/localez
+[coveralls-image]: https://img.shields.io/coveralls/labithiotis/localez.svg?style=flat
+[coveralls-url]: https://coveralls.io/r/labithiotis/localez?branch=master
