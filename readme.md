@@ -29,7 +29,7 @@ __('{{gender g male(He) female(She)}} has {{integer n zero(like) one(like) other
 
 #### Translations
 
-The translations are stored in a `JSON` file which is loaded in and stored by it's language, the language to decided either by UserAgent or by user if loaded manually.
+The translations are stored in a `JSON` file which is loaded in and stored by it's language, the language initial loaded is pulled out by UserAgent or if server side it can be loaded manually.
 
 ##### Example of a translation file
 ```json
@@ -116,7 +116,6 @@ localez.load('fr', 'http://url.com/fr.json')
 
 ```
 
-
 -------------
 
 ### Specification
@@ -165,48 +164,99 @@ __('There\'s {{n bottles other( bottles) one( bottle)}} of beer on the wall.', {
 ```
 
 #### Config per locale
-Inside the locale that's loaded you can add a config that will changed how the string is parsed.
-```javascript
-config: {
-  debug: false,
-}
+Inside the locale that's loaded you can add a config that will only effect that locale, you can override different aspects of the parser dependant on each locale.
+```json
+"config": {
+  "debug": BOOLEAN,
+  "debugConsoleStyle": {
+      "warn": STRING,
+      "error": STRING
+  },
+  "openTag": STRING,
+  "closeTag": STRING,
+  "matchers": {
+      "type": REGEX,
+      "variable": REGEX
+  },
+  "markers": {
+      "gender": [STRING, STRING],
+      "integer": [STRING, STRING],
+      "number": [STRING, STRING]
+  },
+  "numbersEnums": {
+      "zero": STRING,
+      "one": STRING,
+      "two": STRING,
+      "few": STRING,
+      "many": STRING,
+      "other": STRING
+  },
+  "numbers": FUNCTION,
+  "numberToString": FUNCTION
+},
+000000: "TRANSLATION 1",
+000001: "TRANSLATION 2",
+000003: "TRANSLATION 3"
 ```
 
-|Config Options|Defaults||
+|Config Options|TYPE|Defaults||
 |-----|-----|-----|
-|debug||If debug is enabled or not, default is false|
-|debugConsoleStyle||
-|&nbsp;&nbsp;&nbsp;&nbsp;`warn`|background: #990f0f; color: #ffc7c7|Styling for warning messages in console|
-|&nbsp;&nbsp;&nbsp;&nbsp;`error`|background: #990f0f; color: #ffc7c7|Styling for error messages in console|
-|openTag|{{|string to match on for opening an expression|
-|closeTag|}}|string to match on for closing an expression|
-|matchers|||
-|&nbsp;&nbsp;&nbsp;&nbsp;`type`|/^(\\s+)?\w+/i|Regex to extract the type inside an expression|
-|&nbsp;&nbsp;&nbsp;&nbsp;`variable`|/^(\\s+)?[\w\.]+/i|Regex to extract the variable in an expression |
-|markers||These are the markers for types|
-|&nbsp;&nbsp;&nbsp;&nbsp;`gender`|['gender', 'g']|Determines if the expression is a gender type|
-|&nbsp;&nbsp;&nbsp;&nbsp;`integer`|['integer', 'i']|Determines if the expression is a integer type|
-|&nbsp;&nbsp;&nbsp;&nbsp;`number`|['number', 'n']|Determines if the expression is a number type|
-|numberEnum||Override the enums returned by the numbers function|
-|&nbsp;&nbsp;&nbsp;&nbsp;`zero`|zero||
-|&nbsp;&nbsp;&nbsp;&nbsp;`one`|one||
-|&nbsp;&nbsp;&nbsp;&nbsp;`two`|two||
-|&nbsp;&nbsp;&nbsp;&nbsp;`few`|few||
-|&nbsp;&nbsp;&nbsp;&nbsp;`many`|many||
-|&nbsp;&nbsp;&nbsp;&nbsp;`other`|other||
-|numbers|function(number, gender)|A function to decide which enum the value of the variable is, used to pick the option inside an expression|
-|numberToString|function(number, gender)|A function to convert an integer into number text (1 -> one)|
+|debug|`BOOLEAN`||If debug is enabled or not, default is false|
+|debugConsoleStyle|`OBJECT`||
+|&nbsp;&nbsp;&nbsp;&nbsp;`warn`|`STRING`|background: #990f0f; color: #ffc7c7|Styling for warning messages in console|
+|&nbsp;&nbsp;&nbsp;&nbsp;`error`|`STRING`|background: #990f0f; color: #ffc7c7|Styling for error messages in console|
+|openTag|`STRING`|{{|string to match on for opening an expression|
+|closeTag|`STRING`|}}|string to match on for closing an expression|
+|matchers|`OBJECT`|||
+|&nbsp;&nbsp;&nbsp;&nbsp;`type`|`REGEX`|/^(\\s+)?\w+/i|Regex to extract the type inside an expression|
+|&nbsp;&nbsp;&nbsp;&nbsp;`variable`|`REGEX`|/^(\\s+)?[\w\.]+/i|Regex to extract the variable in an expression |
+|markers|`OBJECT`||These are the markers for types|
+|&nbsp;&nbsp;&nbsp;&nbsp;`gender`|`STRING`|['gender', 'g']|Determines if the expression is a gender type|
+|&nbsp;&nbsp;&nbsp;&nbsp;`integer`|`STRING`|['integer', 'i']|Determines if the expression is a integer type|
+|&nbsp;&nbsp;&nbsp;&nbsp;`number`|`STRING`|['number', 'n']|Determines if the expression is a number type|
+|numberEnum|`OBJECT`||Override the enums returned by the numbers function|
+|&nbsp;&nbsp;&nbsp;&nbsp;`zero`|`STRING`|zero||
+|&nbsp;&nbsp;&nbsp;&nbsp;`one`|`STRING`|one||
+|&nbsp;&nbsp;&nbsp;&nbsp;`two`|`STRING`|two||
+|&nbsp;&nbsp;&nbsp;&nbsp;`few`|`STRING`|few||
+|&nbsp;&nbsp;&nbsp;&nbsp;`many`|`STRING`|many||
+|&nbsp;&nbsp;&nbsp;&nbsp;`other`|`STRING`|other||
+|numbers|`FUNCTION`|function(number, gender)|A function to decide which enum the value of the variable is, used to pick the option inside an expression|
+|numberToString|`FUNCTION`|function(number, gender)|A function to convert an integer into number text (1 -> one)|
 
 # Gulp Task for Generating a Locale File
 Below is a Gulp task that will trawl the source code directory for any translation references and spit them out to `./locales/output.js`
 
 Download from: [localez/gulptask.js](https://raw.githubusercontent.com/labithiotis/localez/master/gulptask.js)
 
+# Todo
+- [x] Allow number (n/i) placement in option using %i
+- [x] Added test for combination expressions
+- [] Check AMD works
+- [] Get translation functions for numbers and numbersToString:
+	- [] French
+	- [] German
+	- [] Italian
+	etc..
+- [] Add tests to check for config overrides
+- [] Add JS Coverage test (suggestions?  coveralls.io)
+- [] Make hashCode Optional, allows string conts
+- [] Create a plugin to do syntax highlighting for:
+	- [] Webstorm IDE
+	- [] Atom
+
+
+# Support Me
+If you would like to aid me, please feel free to contact me or buy me a beer :)
+
+
+Still lost, let me know what additional information you need on this readme to help explain this library.
 
 [npm-image]: https://img.shields.io/npm/v/localez.svg?style=flat
 [npm-url]: https://npmjs.org/package/localez
 [downloads-image]: https://img.shields.io/npm/dm/localez.svg?style=flat
 [downloads-url]: https://npmjs.org/package/localez
+
 [travis-image]: https://img.shields.io/travis/strongloop/localez.svg?style=flat
 [travis-url]: https://travis-ci.org/strongloop/localez
 [coveralls-image]: https://img.shields.io/coveralls/strongloop/localez.svg?style=flat
