@@ -201,7 +201,7 @@ Inside the locale that's loaded you can add a config that will only effect that 
 ```
 
 |Config Options|TYPE|Defaults||
-|-----|-----|-----|
+|-----|-----|-----|-----|
 |debug|`BOOLEAN`||If debug is enabled or not, default is false|
 |debugConsoleStyle|`OBJECT`||
 |&nbsp;&nbsp;&nbsp;&nbsp;`warn`|`STRING`|background: #990f0f; color: #ffc7c7|Styling for warning messages in console|
