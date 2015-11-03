@@ -199,28 +199,28 @@ Inside the locale that's loaded you can add a config that will only effect that 
 000003: "TRANSLATION 3"
 ```
 
-|Config Options|TYPE|Defaults||
-|-----|-----|-----|
+|Config Options|Type|Defaults||
+|-----|-----|-----|-----|
 |debug|`BOOLEAN`||If debug is enabled or not, default is false|
 |debugConsoleStyle|`OBJECT`||
-|&nbsp;&nbsp;&nbsp;&nbsp;`warn`|`STRING`|background: #990f0f; color: #ffc7c7|Styling for warning messages in console|
-|&nbsp;&nbsp;&nbsp;&nbsp;`error`|`STRING`|background: #990f0f; color: #ffc7c7|Styling for error messages in console|
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;warn|`STRING`|background: #990f0f; color: #ffc7c7|Styling for warning messages in console|
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;error|`STRING`|background: #990f0f; color: #ffc7c7|Styling for error messages in console|
 |openTag|`STRING`|{{|string to match on for opening an expression|
 |closeTag|`STRING`|}}|string to match on for closing an expression|
 |matchers|`OBJECT`|||
-|&nbsp;&nbsp;&nbsp;&nbsp;`type`|`REGEX`|/^(\\s+)?\w+/i|Regex to extract the type inside an expression|
-|&nbsp;&nbsp;&nbsp;&nbsp;`variable`|`REGEX`|/^(\\s+)?[\w\.]+/i|Regex to extract the variable in an expression |
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type|`REGEX`|/^(\\s+)?\w+/i|Regex to extract the type inside an expression|
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;variable|`REGEX`|/^(\\s+)?[\w\.]+/i|Regex to extract the variable in an expression |
 |markers|`OBJECT`||These are the markers for types|
-|&nbsp;&nbsp;&nbsp;&nbsp;`gender`|`STRING`|['gender', 'g']|Determines if the expression is a gender type|
-|&nbsp;&nbsp;&nbsp;&nbsp;`integer`|`STRING`|['integer', 'i']|Determines if the expression is a integer type|
-|&nbsp;&nbsp;&nbsp;&nbsp;`number`|`STRING`|['number', 'n']|Determines if the expression is a number type|
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gender|`STRING`|['gender', 'g']|Determines if the expression is a gender type|
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;integer|`STRING`|['integer', 'i']|Determines if the expression is a integer type|
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number|`STRING`|['number', 'n']|Determines if the expression is a number type|
 |numberEnum|`OBJECT`||Override the enums returned by the numbers function|
-|&nbsp;&nbsp;&nbsp;&nbsp;`zero`|`STRING`|zero||
-|&nbsp;&nbsp;&nbsp;&nbsp;`one`|`STRING`|one||
-|&nbsp;&nbsp;&nbsp;&nbsp;`two`|`STRING`|two||
-|&nbsp;&nbsp;&nbsp;&nbsp;`few`|`STRING`|few||
-|&nbsp;&nbsp;&nbsp;&nbsp;`many`|`STRING`|many||
-|&nbsp;&nbsp;&nbsp;&nbsp;`other`|`STRING`|other||
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zero|`STRING`|zero||
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;one|`STRING`|one||
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;two|`STRING`|two||
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;few|`STRING`|few||
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;many|`STRING`|many||
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;other|`STRING`|other||
 |numbers|`FUNCTION`|function(number, gender)|A function to decide which enum the value of the variable is, used to pick the option inside an expression|
 |numberToString|`FUNCTION`|function(number, gender)|A function to convert an integer into number text (1 -> one)|
 
@@ -232,18 +232,18 @@ Download from: [localez/gulptask.js](https://raw.githubusercontent.com/labithiot
 # Todo
 - [x] Allow number (n/i) placement in option using %i
 - [x] Added test for combination expressions
-- [] Check AMD works
-- [] Get translation functions for numbers and numbersToString:
-	- [] French
-	- [] German
-	- [] Italian
-	etc..
-- [] Add tests to check for config overrides
-- [] Add JS Coverage test (suggestions?  coveralls.io)
-- [] Make hashCode Optional, allows string conts
-- [] Create a plugin to do syntax highlighting for:
-	- [] Webstorm IDE
-	- [] Atom
+- [ ] Check AMD works
+- [ ] Get translation functions for numbers and numbersToString:
+	- [ ] French
+	- [ ] German
+	- [ ] Italian
+	- etc..
+- [ ] Add tests to check for config overrides
+- [ ] Add JS Coverage test (suggestions?  coveralls.io)
+- [ ] Make hashCode Optional, allows string conts
+- [ ] Create a plugin to do syntax highlighting for:
+	- [ ] Webstorm IDE
+	- [ ] Atom
 
 
 # Support Me
