@@ -1,5 +1,6 @@
 {
 	"config": {
+		"lang": "en",
 		"debug": false
 	},
 	"-1783117148": "This has been transalted (Test Locale Loading) {{g gender male(male) female(female)}}"

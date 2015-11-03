@@ -1,4 +1,4 @@
-var Locaez = require('./src/locale.js'),
+var Locaez = require(__dirname + '/src/locale.js'),
     locaez = new Locaez();
 
 exports = module.exports = locaez.parse.bind(locaez)

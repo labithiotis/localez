@@ -1,6 +1,6 @@
 {
   "name": "localez",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "description": "Localize from single string for genders, numbers, and number to text.",
   "main": "index.js",
   "scripts": {
