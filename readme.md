@@ -169,32 +169,32 @@ __('There\'s {{n bottles other( bottles) one( bottle)}} of beer on the wall.', {
 Inside the locale that's loaded you can add a config that will only effect that locale, you can override different aspects of the parser dependant on each locale.
 ```json
 "config": {
-  "debug": BOOLEAN,
+  "debug": "BOOLEAN",
   "debugConsoleStyle": {
-      "warn": STRING,
-      "error": STRING
+      "warn": "STRING",
+      "error": "STRING"
   },
-  "openTag": STRING,
-  "closeTag": STRING,
+  "openTag": "STRING",
+  "closeTag": "STRING",
   "matchers": {
-      "type": REGEX,
-      "variable": REGEX
+      "type": "REGEX",
+      "variable": "REGEX"
   },
   "markers": {
-      "gender": [STRING, STRING],
-      "integer": [STRING, STRING],
-      "number": [STRING, STRING]
+      "gender": ["STRING", "STRING"],
+      "integer": ["STRING", "STRING"],
+      "number": ["STRING", "STRING"]
   },
   "numbersEnums": {
-      "zero": STRING,
-      "one": STRING,
-      "two": STRING,
-      "few": STRING,
-      "many": STRING,
-      "other": STRING
+      "zero": "STRING",
+      "one": "STRING",
+      "two": "STRING",
+      "few": "STRING",
+      "many": "STRING",
+      "other": "STRING"
   },
-  "numbers": FUNCTION,
-  "numberToString": FUNCTION
+  "numbers": "FUNCTION",
+  "numberToString": "FUNCTION"
 },
 000000: "TRANSLATION 1",
 000001: "TRANSLATION 2",
@@ -229,18 +229,20 @@ Inside the locale that's loaded you can add a config that will only effect that 
 # Todo
 - [x] Allow number (n/i) placement in option using %i
 - [x] Added test for combination expressions
-- [] Check AMD works
-- [] Get translation functions for `numbers` and `numbersToString`:
-	- [] French
-	- [] German
-	- [] Italian
+- [ ] Add Travis CI and build badge to readme
+- [ ] Convert src to ES6 and split out to classes to different files
+- [ ] Check AMD works
+- [ ] Get translation functions for `numbers` and `numbersToString`:
+	- [ ] French
+	- [ ] German
+	- [ ] Italian
 	etc..
-- [] Add tests to check for locale config overrides
-- [] Add JS Coverage test (suggestions?  coveralls.io)
-- [] Make hashCode optional, allowing string conts instead
-- [] Create a plugin to do syntax highlighting for:
-	- [] Webstorm IDE
-	- [] Atom
+- [ ] Add tests to check for locale config overrides
+- [ ] Add JS Coverage (suggestions?  coveralls.io)
+- [ ] Make hashCode optional, allowing string conts instead
+- [ ] Create a plugin to do syntax highlighting for:
+	- [ ] Webstorm IDE
+	- [ ] Atom
 
 
 # Author

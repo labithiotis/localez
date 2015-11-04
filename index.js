@@ -1,3 +1,4 @@
+require('babel/register')
 var Locaez = require(__dirname + '/src/locale.js'),
     locaez = new Locaez();
 
