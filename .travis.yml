@@ -8,5 +8,8 @@ node_js:
   - "0.11"
   - "0.10"
   - "iojs"
+branches:
+  only:
+    - master
 sudo: false
 script: "npm test"
