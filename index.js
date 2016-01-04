@@ -1,10 +1,10 @@
-require('babel/register')
-var Locaez = require(__dirname + '/src/locale.js'),
-    locaez = new Locaez();
+//require('babel-register');
 
-exports = module.exports = locaez.parse.bind(locaez)
+var localez = require('./src/localez.js');
 
-exports.lang = locaez.lang
-exports.locales = locaez.locales
-exports.load = locaez.load.bind(locaez)
-exports.set = locaez.set.bind(locaez)
+exports = module.exports = localez.parse.bind(localez)
+
+exports.lang = localez.lang
+exports.locales = localez.locales
+exports.load = localez.load.bind(localez)
+exports.set = localez.set.bind(localez)

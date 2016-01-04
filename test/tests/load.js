@@ -1,4 +1,4 @@
-var __ = require('./../../index.js'),
+var __     = require('./../../index.js'),
 	path = require('path'),
 	assert = require('assert');
 

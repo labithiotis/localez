@@ -1,5 +1,5 @@
-var __ = require('./../../index.js'),
-		assert 	= require('assert');
+var __     = require('./../../index.js'),
+	assert 	= require('assert');
 
 describe('Number Tests', function() {
 

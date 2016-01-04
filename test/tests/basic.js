@@ -1,24 +1,25 @@
-var __ = require('./../../index.js'),
-		assert 	= require('assert');
+var __     = require('./../../index.js'),
+    assert = require('assert');
 
-describe('Basic Tests', function() {
+describe('Basic Tests', function () {
 
-		it('"hello" when passed "hello"', function(done) {
+    it('"hello" when passed "hello"', function (done) {
 
-			assert.equal(__('hello'), 'hello')
+        assert.equal(__('hello'), 'hello')
 
-			done()
+        done()
 
-		})
+    })
 
-		it('Check special caharacters', function(done) {
+    it('Check special characters', function (done) {
 
-			var string = __('!@£$%^&*()_+=-[]{}":;\'\'.,><>?//>>!?~~±!£±€#¢¡º¶∞§¶ª¡–≠¡"')
+        var text = '!@£$%^&*()_+=-[]{}":;\'\'.,><>?//>>!?~~±!£±€#¢¡º¶∞§¶ª¡–≠¡"',
+            string = __(text)
 
-			assert.equal(string, '!@£$%^&*()_+=-[]{}":;\'\'.,><>?//>>!?~~±!£±€#¢¡º¶∞§¶ª¡–≠¡"')
+        assert.equal(string, text)
 
-			done()
+        done()
 
-		})
+    })
 
 })

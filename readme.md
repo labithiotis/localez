@@ -43,7 +43,7 @@ The translations are stored in a `JSON` file which is loaded in and stored by it
 }
 ```
 
-The number stored for each translation is a unique HashCode of the requested string from the source code, reason for the library doing this, is for compression and readability of contents. 
+The number stored for each translation is a unique HashCode of the requested string from the source code, reason for the library doing this, is for compression and readability of contents.
 
 Along with the with the locale translations, is the locale config which overrides all aspects of locale translation.
 
@@ -229,7 +229,7 @@ Inside the locale that's loaded you can add a config that will only effect that 
 # Todo
 - [x] Allow number (n/i) placement in option using %i
 - [x] Added test for combination expressions
-- [ ] Add Travis CI and build badge to readme
+- [x] Add Travis CI and build badge to readme
 - [ ] Convert src to ES6 and split out to classes to different files
 - [ ] Check AMD works
 - [ ] Get translation functions for `numbers` and `numbersToString`:
@@ -246,7 +246,7 @@ Inside the locale that's loaded you can add a config that will only effect that 
 
 
 # Author
-#### Darren Labithiotis 
+#### Darren Labithiotis
 @labithiotis
 
 

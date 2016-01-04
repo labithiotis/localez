@@ -8,3 +8,4 @@ dist
 .jscsrc
 .jsbeautifyrc
 gulpfile.js
+localez.js
