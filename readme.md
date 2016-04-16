@@ -253,6 +253,9 @@ If you would like to aid me, please feel free to contact me or buy me a beer :)
 
 Still lost, let me know what additional information you need on this readme to help explain this library.
 
+# Special Mention
+Thanks to the [BrowserStack] team, allowing me to test the library accross all the differnet browsers.
+
 [npm-image]: https://img.shields.io/npm/v/localez.svg?style=flat
 [npm-url]: https://npmjs.org/package/localez
 [downloads-image]: https://img.shields.io/npm/dm/localez.svg?style=flat
@@ -263,3 +266,4 @@ Still lost, let me know what additional information you need on this readme to h
 [coveralls-url]: https://coveralls.io/r/labithiotis/localez?branch=master
 [browser-stack-image]: https://img.shields.io/badge/BrowserStack-tested-brightgreen.svg
 [browser-stack-url]: https://www.browserstack.com
+[BrowserStack]: https://www.browserstack.com
