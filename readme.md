@@ -3,6 +3,7 @@
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
 [![Build][travis-image]][travis-url]
+[![BroswerStack][browser-stack-image]][browser-stack-url]
 
 Localization is a pain, specially when dealing with gender specific translations and pluralization, other libraries have tackled this with complex `json`/`xml` structures. This library avoids that by working similar to existing templating libraries, allowing translation to be self contained and inline. Using ES6 templating string makes it even easier.
 
@@ -260,3 +261,5 @@ Still lost, let me know what additional information you need on this readme to h
 [travis-url]: https://travis-ci.org/labithiotis/localez
 [coveralls-image]: https://img.shields.io/coveralls/labithiotis/localez.svg?style=flat
 [coveralls-url]: https://coveralls.io/r/labithiotis/localez?branch=master
+[browser-stack-image]: https://img.shields.io/badge/BrowserStack-tested-brightgreen.svg
+[browser-stack-url]: https://www.browserstack.com
